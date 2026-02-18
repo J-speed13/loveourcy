@@ -15,7 +15,7 @@ export const Posters: React.FC = () => {
             <div className="relative w-full max-w-[450px] aspect-[3/4] group bg-slate-50 rounded-none overflow-hidden shadow-2xl transform lg:-rotate-2 border border-slate-100 flex items-center justify-center p-12">
                <div className="relative z-10 w-full h-full flex flex-col items-center justify-center text-center">
                   <span className="text-slate-200 font-black uppercase tracking-[0.4em] text-xs">Poster Series</span>
-                  <span className="text-slate-200 font-black uppercase tracking-[0.4em] text-xs mt-2">Coming Soon</span>
+                  <span className="text-slate-300 font-black uppercase tracking-[0.4em] text-[10px] mt-4">Coming Soon</span>
                </div>
                
                {/* Aesthetic overlays */}
@@ -33,14 +33,18 @@ export const Posters: React.FC = () => {
             <h2 className="text-5xl sm:text-7xl font-black text-slate-900 tracking-tighter mb-8">
               {t.posters.title}
             </h2>
-            <div className="space-y-6 text-xl text-slate-500 font-medium leading-relaxed mb-12">
-              <p>{t.posters.p1}</p>
-              <p>{t.posters.p2}</p>
-              <p className="text-slate-900 font-black italic">{t.posters.p3}</p>
-              <p className="text-slate-900 font-black">{t.posters.p4}</p>
+            
+            <p className="text-xl text-slate-900 font-bold mb-8 italic">{t.posters.intro}</p>
+
+            <div className="space-y-1 text-lg sm:text-xl text-slate-500 font-medium leading-relaxed mb-12">
+              {t.posters.verse.map((line, idx) => (
+                <p key={idx} className={line === '' ? 'h-4' : ''}>
+                  {line}
+                </p>
+              ))}
             </div>
 
-            <div className="flex flex-wrap gap-6">
+            <div className="flex flex-wrap gap-4 sm:gap-6">
               <div className="flex items-center gap-3 px-6 py-4 bg-slate-50 rounded-none border border-slate-100 text-slate-600 font-bold">
                 <Camera className="w-5 h-5 text-[#d37628]" /> Snap it
               </div>
