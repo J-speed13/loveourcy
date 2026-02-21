@@ -10,11 +10,27 @@ const TiktokIcon: React.FC<{ className?: string }> = ({ className }) => (
   </svg>
 );
 
-export const Footer: React.FC<{ setView: (view: ViewState) => void }> = ({ setView }) => {
+export const Footer: React.FC<{ setView: (view: ViewState) => void }> = () => {
   const { t } = useLanguage();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   };
 
   return (
@@ -22,16 +38,18 @@ export const Footer: React.FC<{ setView: (view: ViewState) => void }> = ({ setVi
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col items-center">
           
-          <div className="flex items-center gap-3 mb-16">
+          <div className="flex items-center gap-3 mb-16 cursor-pointer" onClick={scrollToTop}>
             <Logo className="w-10 h-10" />
-            <span className="text-xl font-black tracking-tight text-slate-900 uppercase">
+            <span className="text-xl arial-black tracking-tight text-slate-900 uppercase">
               LoveOur<span className="text-[#d37628]">Island</span>
             </span>
           </div>
 
-          <div className="text-center max-w-2xl mb-16">
-            <p className="text-slate-900 font-black text-lg mb-2">{t.footer.rights}</p>
-            <p className="text-slate-400 font-medium italic text-sm">{t.footer.usage}</p>
+          <div className="text-center max-w-3xl mb-16">
+            <p className="text-slate-900 font-black text-lg mb-4">{t.footer.rights}</p>
+            <p className="text-slate-500 font-medium text-sm leading-relaxed">
+              {t.footer.usage}
+            </p>
           </div>
 
           <div className="flex items-center gap-8 mb-20">
@@ -44,8 +62,8 @@ export const Footer: React.FC<{ setView: (view: ViewState) => void }> = ({ setVi
 
           <div className="flex flex-col md:flex-row justify-between items-center w-full gap-8">
             <div className="flex gap-8 order-2 md:order-1">
-              <button onClick={() => setView(ViewState.PRIVACY)} className="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-slate-900">{t.footer.privacy}</button>
-              <button onClick={() => setView(ViewState.TERMS)} className="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-slate-900">{t.footer.terms}</button>
+              <button onClick={() => scrollToSection('privacy')} className="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-slate-900">{t.footer.privacy}</button>
+              <button onClick={() => scrollToSection('terms')} className="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-slate-900">{t.footer.terms}</button>
             </div>
 
             <button 

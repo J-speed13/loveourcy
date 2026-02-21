@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { Youtube, Instagram, Share2, ExternalLink } from 'lucide-react';
+import { Youtube, Instagram, Share2, ExternalLink, Printer, MapPin, Building2, UserPlus } from 'lucide-react';
 
 const TiktokIcon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className} xmlns="http://www.w3.org/2000/svg">
@@ -12,56 +12,47 @@ export const Help: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="bg-slate-900 py-32 px-6">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-5xl sm:text-7xl font-black text-white tracking-tighter mb-8 uppercase">
-          {t.help.title}
-        </h2>
-        <p className="text-2xl text-slate-400 font-bold mb-16 italic">
-          {t.help.p1}
-        </p>
+    <section className="bg-white py-32 px-6 border-t border-slate-100">
+      <div className="max-w-5xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+          <div className="max-w-2xl">
+            <h2 className="text-5xl sm:text-7xl font-black text-slate-900 tracking-tighter uppercase leading-none mb-6">
+              {t.help.title}
+            </h2>
+            <p className="text-xl text-slate-600 font-medium mb-12">
+              {t.help.p1}
+            </p>
 
-        <ul className="space-y-12">
-          <li className="flex flex-col sm:flex-row sm:items-center gap-6">
-            <div className="flex items-center gap-4 text-white">
-              <span className="text-xl font-black uppercase">Share the film</span>
+            <div className="space-y-8 text-2xl font-black text-slate-900 uppercase tracking-tight">
+              <div className="flex flex-col gap-2">
+                <a 
+                  href="https://www.youtube.com/watch?v=ISdbGxQYBCE" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-[#d37628] transition-colors flex items-center gap-3"
+                >
+                  {t.help.items[0]} <ExternalLink className="w-6 h-6" />
+                </a>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <span>{t.help.items[1]}</span>
+                <div className="flex gap-4">
+                  <a href="https://www.instagram.com/jamesincyprus/" target="_blank" rel="noopener noreferrer" className="p-4 border border-slate-200 bg-white text-slate-400 hover:border-slate-900 hover:text-slate-900 transition-all"><Instagram className="w-6 h-6" /></a>
+                  <a href="https://www.tiktok.com/@james_stanton" target="_blank" rel="noopener noreferrer" className="p-4 border border-slate-200 bg-white text-slate-400 hover:border-slate-900 hover:text-slate-900 transition-all"><TiktokIcon className="w-6 h-6" /></a>
+                  <a href="https://www.youtube.com/@JamesStanton" target="_blank" rel="noopener noreferrer" className="p-4 border border-slate-200 bg-white text-slate-400 hover:border-slate-900 hover:text-slate-900 transition-all"><Youtube className="w-6 h-6" /></a>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <span className="text-slate-400">{t.help.items[2]}</span>
+              </div>
             </div>
-            <a 
-              href="https://www.youtube.com/watch?v=ISdbGxQYBCE" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-[#d37628] text-white font-bold transition-all"
-            >
-              Watch & Share <ExternalLink className="w-4 h-4" />
-            </a>
-          </li>
+          </div>
+        </div>
 
-          <li className="flex flex-col sm:flex-row sm:items-center gap-6">
-            <div className="flex items-center gap-4 text-white">
-              <span className="text-xl font-black uppercase">Follow the journey</span>
-            </div>
-            <div className="flex flex-wrap gap-4">
-              <a href="https://www.instagram.com/jamesincyprus/" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/10 hover:bg-[#d37628] text-white transition-all"><Instagram className="w-5 h-5" /></a>
-              <a href="https://www.tiktok.com/@james_stanton" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/10 hover:bg-[#d37628] text-white transition-all"><TiktokIcon className="w-5 h-5" /></a>
-              <a href="https://www.youtube.com/@JamesStanton" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/10 hover:bg-[#d37628] text-white transition-all"><Youtube className="w-5 h-5" /></a>
-            </div>
-          </li>
-
-          <li className="flex items-start gap-4 text-white">
-             <span className="text-xl font-bold text-slate-300">Tag businesses you want to see adopt the icon</span>
-          </li>
-
-          <li className="flex items-start gap-4 text-white">
-             <span className="text-xl font-bold text-slate-300">Print a poster</span>
-          </li>
-
-          <li className="flex items-start gap-4 text-white">
-             <span className="text-xl font-bold text-slate-300">Put it in your gym, café, office</span>
-          </li>
-        </ul>
-
-        <div className="mt-24 pt-12 border-t border-white/10">
-          <p className="text-[#d37628] text-3xl sm:text-4xl font-black italic uppercase tracking-tighter">
+        <div className="mt-20 pt-20 border-t border-slate-100">
+          <p className="text-[#d37628] text-3xl font-black uppercase tracking-tighter leading-none">
             {t.help.outro}
           </p>
         </div>

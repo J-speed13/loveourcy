@@ -1,62 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { About } from './components/About';
-import { Idea } from './components/Idea';
-import { Goal } from './components/Goal';
-import { Posters } from './components/Posters';
-import { Help } from './components/Help';
-import { Donate } from './components/Donate';
-import { DownloadLogo } from './components/DownloadLogo';
-import { PrivacyPolicy } from './components/PrivacyPolicy';
-import { TermsOfService } from './components/TermsOfService';
+import { Actions } from './components/Actions';
 import { Footer } from './components/Footer';
 import { ViewState } from './types';
 import { LanguageProvider } from './contexts/LanguageContext';
 
 const AppContent: React.FC = () => {
-  const [currentView, setCurrentView] = useState<ViewState>(ViewState.HOME);
-
-  const renderView = () => {
-    switch (currentView) {
-      case ViewState.HOME:
-        return (
-          <>
-            <Hero setView={setCurrentView} />
-            <Idea />
-            <Goal />
-            <About />
-            <Posters />
-            <Help />
-          </>
-        );
-      case ViewState.STORY:
-        return (
-          <>
-            <Idea />
-            <About />
-          </>
-        );
-      case ViewState.DONATE:
-        return <Donate />;
-      case ViewState.DOWNLOAD:
-        return <DownloadLogo />;
-      case ViewState.PRIVACY:
-        return <PrivacyPolicy />;
-      case ViewState.TERMS:
-        return <TermsOfService />;
-      default:
-        return <Hero setView={setCurrentView} />;
-    }
-  };
+  // Navigation is handled via scrolling to IDs in Navbar
+  const [currentActiveSection, setCurrentActiveSection] = React.useState<ViewState>(ViewState.HOME);
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <Navbar currentView={currentView} setView={setCurrentView} />
+      <Navbar currentView={currentActiveSection} setView={() => {}} />
       <main className="flex-grow">
-        {renderView()}
+        <section id="home">
+          <Hero setView={() => {}} />
+        </section>
+        
+        <section id="help">
+          <Actions />
+        </section>
       </main>
-      <Footer setView={setCurrentView} />
+      <Footer setView={() => {}} />
     </div>
   );
 };

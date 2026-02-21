@@ -10,7 +10,7 @@ interface NavbarProps {
   setView: (view: ViewState) => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
+export const Navbar: React.FC<NavbarProps> = ({ currentView }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { t, language, setLanguage } = useLanguage();
 
@@ -18,39 +18,63 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
     setLanguage(language === 'en' ? 'el' : 'en');
   };
 
+  const scrollToSection = (id: ViewState) => {
+    const elementId = id === ViewState.HOME ? 'home' : 'help';
+    
+    if (elementId) {
+      const element = document.getElementById(elementId);
+      if (element) {
+        const offset = 80; // Navbar height
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = element.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }
+    setIsOpen(false);
+  };
+
   const getLabel = (id: string) => {
     switch(id) {
       case ViewState.HOME: return t.nav.home;
-      case ViewState.STORY: return t.nav.story;
-      case ViewState.DONATE: return t.nav.donate;
-      case ViewState.DOWNLOAD: return t.nav.download;
+      case 'help': return t.help.title;
       default: return '';
     }
   };
 
+  const navItems = [
+    { id: ViewState.HOME },
+    { id: 'help' }
+  ];
+
   return (
-    <nav className="sticky top-0 z-50 bg-[#fdfbf7]/80 backdrop-blur-xl border-b border-slate-200/50 px-4">
+    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/50 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between h-20 items-center">
           {/* Brand */}
           <div 
             className="flex items-center cursor-pointer group space-x-3"
-            onClick={() => setView(ViewState.HOME)}
+            onClick={() => scrollToSection(ViewState.HOME)}
           >
             <div className="w-10 h-10 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
                <Logo className="w-full h-full" />
             </div>
-            <span className="text-xl font-black tracking-tight text-slate-900">
+            <span className="text-xl arial-black tracking-tight text-slate-900">
               LoveOur<span className="text-[#d37628]">Island</span>
             </span>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center bg-white/50 border border-slate-200/50 rounded-none px-2 py-1.5 shadow-sm">
-            {NAV_ITEMS.map((item) => (
+            {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => setView(item.id as ViewState)}
+                onClick={() => scrollToSection(item.id as any)}
                 className={`flex items-center px-4 py-2 rounded-none text-sm font-bold transition-all duration-300 ${
                   currentView === item.id
                     ? 'bg-slate-900 text-white shadow-lg'
@@ -94,13 +118,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
       {isOpen && (
         <div className="md:hidden bg-white/95 backdrop-blur-2xl border-t border-slate-100 absolute left-0 right-0 p-4 shadow-2xl rounded-none">
           <div className="space-y-2">
-            {NAV_ITEMS.map((item) => (
+            {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => {
-                  setView(item.id as ViewState);
-                  setIsOpen(false);
-                }}
+                onClick={() => scrollToSection(item.id as any)}
                 className={`w-full text-left px-6 py-4 rounded-none text-base font-bold transition-all ${
                   currentView === item.id
                     ? 'bg-orange-50 text-[#d37628]'
