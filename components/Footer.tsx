@@ -40,13 +40,13 @@ export const Footer: React.FC<{ setView: (view: ViewState) => void }> = () => {
           
           <div className="flex items-center gap-3 mb-16 cursor-pointer" onClick={scrollToTop}>
             <Logo className="w-10 h-10" />
-            <span className="text-xl arial-black tracking-tight text-slate-900 uppercase">
-              LoveOur<span className="text-[#d37628]">Island</span>
+            <span className="text-xl arial-black tracking-tight text-[#d87c28] uppercase">
+              LoveOurIsland
             </span>
           </div>
 
           <div className="text-center max-w-3xl mb-16">
-            <p className="text-slate-900 font-black text-lg mb-4">{t.footer.rights}</p>
+            <p className="text-[#d87c28] font-black text-lg mb-4">{t.footer.rights}</p>
             <p className="text-slate-500 font-medium text-sm leading-relaxed">
               {t.footer.usage}
             </p>
@@ -68,10 +68,10 @@ export const Footer: React.FC<{ setView: (view: ViewState) => void }> = () => {
 
             <button 
               onClick={scrollToTop}
-              className="group flex items-center gap-3 text-xs font-black uppercase tracking-widest text-slate-900 order-1 md:order-2"
+              className="group flex items-center gap-3 text-xs font-black uppercase tracking-widest text-[#d87c28] order-1 md:order-2"
             >
               {t.footer.backToTop} 
-              <div className="p-3 bg-slate-900 text-white rounded-none group-hover:-translate-y-1 transition-all">
+              <div className="p-3 bg-[#355700] text-white rounded-none group-hover:-translate-y-1 transition-all">
                 <ArrowUp className="w-4 h-4" />
               </div>
             </button>

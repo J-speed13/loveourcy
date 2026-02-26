@@ -56,7 +56,7 @@ export const Hero: React.FC<HeroProps> = () => {
               href="https://www.youtube.com/watch?v=ISdbGxQYBCE"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 px-10 py-5 bg-[#2d3a1a] text-white text-lg font-black rounded-none shadow-2xl hover:bg-[#1a2410] transition-all hover:-translate-y-1 w-full sm:w-auto min-w-[240px]"
+              className="flex items-center justify-center gap-3 px-10 py-5 bg-[#355700] text-white text-lg font-black rounded-none shadow-2xl hover:bg-[#2a4500] transition-all hover:-translate-y-1 w-full sm:w-auto min-w-[240px]"
             >
               <Play className="w-5 h-5 fill-current" /> {t.hero.ctaFilm}
             </a>
@@ -73,7 +73,7 @@ export const Hero: React.FC<HeroProps> = () => {
                   window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
                 }
               }}
-              className="flex items-center justify-center px-10 py-5 bg-white text-[#2d3a1a] text-lg font-black rounded-none hover:bg-slate-50 transition-all shadow-2xl w-full sm:w-auto min-w-[240px]"
+              className="flex items-center justify-center px-10 py-5 bg-[#fcf0da] text-[#d87c28] text-lg font-black rounded-none hover:bg-[#f5e6cc] transition-all shadow-2xl w-full sm:w-auto min-w-[240px]"
             >
               {t.help.title}
             </button>
