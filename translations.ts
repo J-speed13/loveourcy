@@ -115,6 +115,7 @@ export const translations = {
       usage: 'It is protected by copyright. It is free to use on packaging produced in Cyprus and for non-commercial awareness purposes. For merchandise, resale products, political use, or modified versions — please get in touch first.',
       privacy: 'Privacy Policy',
       terms: 'Terms of Service',
+      backToTop: 'Back to top',
     },
     legal: {
       privacy_title: 'Privacy Policy',
@@ -259,6 +260,7 @@ export const translations = {
       usage: 'Προστατεύεται από πνευματικά δικαιώματα. Είναι δωρεάν για χρήση σε συσκευασίες που παράγονται στην Κύπρο και για σκοπούς μη εμπορικής ευαισθητοποίησης. Για εμπορεύματα, προϊόντα μεταπώλησης, πολιτική χρήση ή τροποποιημένες εκδόσεις — επικοινωνήστε μαζί μας πρώτα.',
       privacy: 'Πολιτική Απορρήτου',
       terms: 'Όροι Χρήσης',
+      backToTop: 'Επιστροφή στην κορυφή',
     },
     legal: {
       privacy_title: 'Πολιτική Απορρήτου',

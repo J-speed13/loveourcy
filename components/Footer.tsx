@@ -70,7 +70,7 @@ export const Footer: React.FC<{ setView: (view: ViewState) => void }> = () => {
               onClick={scrollToTop}
               className="group flex items-center gap-3 text-xs font-black uppercase tracking-widest text-slate-900 order-1 md:order-2"
             >
-              Back to top 
+              {t.footer.backToTop} 
               <div className="p-3 bg-slate-900 text-white rounded-none group-hover:-translate-y-1 transition-all">
                 <ArrowUp className="w-4 h-4" />
               </div>
