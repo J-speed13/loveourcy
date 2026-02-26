@@ -7,6 +7,7 @@ export const translations = {
       story: 'The Idea',
       donate: 'Support',
       download: 'Adopt the Icon',
+      hashtag: '#LoveOurIsland',
     },
     hero: {
       titleStart: 'Love Our',
@@ -159,6 +160,7 @@ export const translations = {
       story: 'Η Ιδέα',
       donate: 'Στήριξη',
       download: 'Υιοθετήστε το',
+      hashtag: '#ΑγαπούμεΤηνΚύπρο',
     },
     hero: {
       titleStart: 'Αγαπάμε το',

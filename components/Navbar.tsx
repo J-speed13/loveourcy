@@ -72,7 +72,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
         >
           <Logo className="w-10 h-10 drop-shadow-md" />
           <span className="text-xl arial-black tracking-tight text-white drop-shadow-md">
-            #LoveOurIsland
+            {t.nav.hashtag}
           </span>
         </div>
 

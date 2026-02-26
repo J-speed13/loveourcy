@@ -15,14 +15,35 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onBack }) => {
     comment: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, you'd send this to a server
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      onBack();
-    }, 3000);
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.comment
+        })
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setTimeout(() => {
+          onBack();
+        }, 5000);
+      } else {
+        const errorData = await response.json();
+        alert(`Error: ${errorData.error || 'There was an error sending your message. Please try again.'}`);
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      alert('There was an error sending your message. Please try again.');
+    }
   };
 
   if (submitted) {

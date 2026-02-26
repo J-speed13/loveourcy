@@ -50,14 +50,14 @@ export const Hero: React.FC<HeroProps> = () => {
         <div className="absolute inset-0 bg-black/10"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 sm:pt-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-12 sm:pt-16">
         <div className="text-center max-w-5xl mx-auto">
-          <h1 className="text-6xl sm:text-9xl arial-black tracking-tighter leading-[0.85] mb-8 text-[#fcf0da] uppercase drop-shadow-2xl flex flex-col">
+          <h1 className="text-[6vw] sm:text-[3rem] lg:text-[4rem] arial-black tracking-tighter leading-[0.75] mb-8 text-[#fcf0da] uppercase drop-shadow-2xl flex flex-col">
             <span>{t.hero.titleStart}</span>
             <span>{t.hero.titleEnd}</span>
           </h1>
           
-          <p className="text-lg sm:text-2xl text-[#2d3a1a] leading-tight font-black mb-12 max-w-xl mx-auto uppercase tracking-tight">
+          <p className="text-lg sm:text-3xl text-[#2d3a1a] leading-tight font-black mb-12 max-w-2xl mx-auto uppercase tracking-tight">
             {t.hero.subtitle}
           </p>
 
