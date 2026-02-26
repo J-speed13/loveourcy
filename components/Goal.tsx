@@ -29,7 +29,7 @@ export const Goal: React.FC = () => {
     <section className="bg-[#fdfbf7] py-32 px-6 border-t border-slate-100">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
-          <h2 className="text-5xl sm:text-7xl font-black text-slate-900 tracking-tighter uppercase leading-none mb-6">
+          <h2 className="text-5xl sm:text-7xl arial-black text-[#d87c28] tracking-tighter uppercase leading-none mb-6">
             {t.goal.title}
           </h2>
           <p className="max-w-2xl mx-auto text-xl text-slate-600 font-medium">

@@ -16,7 +16,7 @@ export const Help: React.FC = () => {
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
           <div className="max-w-2xl">
-            <h2 className="text-5xl sm:text-7xl font-black text-slate-900 tracking-tighter uppercase leading-none mb-6">
+            <h2 className="text-5xl sm:text-7xl arial-black text-[#d87c28] tracking-tighter uppercase leading-none mb-6">
               {t.help.title}
             </h2>
             <p className="text-xl text-slate-600 font-medium mb-12">

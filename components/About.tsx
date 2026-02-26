@@ -10,7 +10,7 @@ export const About: React.FC = () => {
         <div className="grid lg:grid-cols-2 gap-20 items-start">
           
           <div>
-            <h2 className="text-5xl sm:text-7xl font-black text-slate-900 tracking-tighter uppercase leading-none mb-12">
+            <h2 className="text-5xl sm:text-7xl arial-black text-[#d87c28] tracking-tighter uppercase leading-none mb-12">
               {t.about.label}
             </h2>
             <div className="space-y-6 text-xl text-slate-600 leading-relaxed font-medium">

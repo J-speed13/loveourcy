@@ -8,7 +8,7 @@ export const Idea: React.FC = () => {
     <section className="bg-white py-32 px-6 overflow-hidden relative border-t border-slate-100">
       <div className="max-w-4xl mx-auto relative z-10">
         
-        <h2 className="text-5xl sm:text-7xl font-black text-slate-900 tracking-tighter uppercase leading-none mb-12">
+        <h2 className="text-5xl sm:text-7xl arial-black text-[#d87c28] tracking-tighter uppercase leading-none mb-12">
           {t.idea.title}
         </h2>
 

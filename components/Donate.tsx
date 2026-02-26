@@ -32,7 +32,7 @@ export const Donate: React.FC = () => {
     <div className="bg-white py-32 px-6 border-t border-slate-100">
       <div className="max-w-4xl mx-auto">
         <div className="text-left mb-20">
-          <h2 className="text-5xl sm:text-7xl font-black text-slate-900 tracking-tighter mb-12 leading-none uppercase">
+          <h2 className="text-5xl sm:text-7xl arial-black text-[#d87c28] tracking-tighter mb-12 leading-none uppercase">
             {t.donate.title}
           </h2>
           <p className="text-xl text-slate-600 font-medium max-w-2xl leading-relaxed">
@@ -42,7 +42,7 @@ export const Donate: React.FC = () => {
 
         <div className="bg-[#fdfbf7] p-12 md:p-20 border border-slate-100 text-center">
            <div className="flex justify-center mb-12">
-              <div className="w-20 h-20 bg-slate-900 rounded-none flex items-center justify-center text-white">
+              <div className="w-20 h-20 bg-[#355700] rounded-none flex items-center justify-center text-white">
                  <Share2 className="w-8 h-8" />
               </div>
            </div>
@@ -50,7 +50,7 @@ export const Donate: React.FC = () => {
            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
              <a 
                href="#"
-               className="inline-flex items-center justify-center gap-4 px-12 py-6 bg-[#d37628] text-white rounded-none font-black text-xl hover:bg-slate-900 transition-all shadow-xl"
+               className="inline-flex items-center justify-center gap-4 px-12 py-6 bg-[#355700] text-white rounded-none font-black text-xl hover:bg-[#2a4500] transition-all shadow-xl"
              >
                {(t.donate as any).donateBtn}
                <Heart className="w-5 h-5 fill-current" />
@@ -58,7 +58,7 @@ export const Donate: React.FC = () => {
 
              <button 
                onClick={handleShare}
-               className="inline-flex items-center justify-center gap-4 px-12 py-6 bg-slate-900 text-white rounded-none font-black text-xl hover:bg-[#d37628] transition-all shadow-xl"
+               className="inline-flex items-center justify-center gap-4 px-12 py-6 bg-[#fcf0da] text-[#d87c28] rounded-none font-black text-xl hover:bg-[#f5e6cc] transition-all shadow-xl"
              >
                {t.donate.btn}
                <Share2 className="w-5 h-5" />

@@ -4,6 +4,7 @@ import { Play, Download } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Logo } from './Logo';
 import { heroBackgroundImage } from './heroImage';
+import { heroMobileBackgroundImage } from './heroMobileImage';
 
 interface HeroProps {
   setView: (view: ViewState) => void;
@@ -32,22 +33,31 @@ export const Hero: React.FC<HeroProps> = () => {
     <div className="relative min-h-screen flex items-start justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src={heroBackgroundImage} 
-          alt="Cyprus Landscape" 
-          className="w-full h-full object-cover"
-          referrerPolicy="no-referrer"
-        />
+        <picture>
+          {heroMobileBackgroundImage && (
+            <source 
+              media="(max-width: 640px)" 
+              srcSet={heroMobileBackgroundImage} 
+            />
+          )}
+          <img 
+            src={heroBackgroundImage} 
+            alt="Cyprus Landscape" 
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+        </picture>
         <div className="absolute inset-0 bg-black/10"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 sm:pt-24">
         <div className="text-center max-w-5xl mx-auto">
-          <h1 className="text-4xl sm:text-6xl arial-black tracking-tighter leading-none mb-4 text-[#fcf0da] uppercase drop-shadow-2xl">
-            {t.hero.titleStart} {t.hero.titleEnd}
+          <h1 className="text-6xl sm:text-9xl arial-black tracking-tighter leading-[0.85] mb-8 text-[#fcf0da] uppercase drop-shadow-2xl flex flex-col">
+            <span>{t.hero.titleStart}</span>
+            <span>{t.hero.titleEnd}</span>
           </h1>
           
-          <p className="text-base sm:text-lg text-[#2d3a1a] leading-relaxed font-black mb-12 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-2xl text-[#2d3a1a] leading-tight font-black mb-12 max-w-xl mx-auto uppercase tracking-tight">
             {t.hero.subtitle}
           </p>
 

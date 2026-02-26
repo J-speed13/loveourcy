@@ -21,7 +21,7 @@ export const Posters: React.FC = () => {
           </div>
 
           <div className="order-1 lg:order-2">
-            <h2 className="text-5xl sm:text-7xl font-black text-slate-900 tracking-tighter uppercase leading-none mb-12">
+            <h2 className="text-5xl sm:text-7xl arial-black text-[#d87c28] tracking-tighter uppercase leading-none mb-12">
               {t.posters.title}
             </h2>
             
