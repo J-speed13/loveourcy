@@ -10,27 +10,35 @@ const TiktokIcon: React.FC<{ className?: string }> = ({ className }) => (
   </svg>
 );
 
-export const Footer: React.FC<{ setView: (view: ViewState) => void }> = () => {
+export const Footer: React.FC<{ setView: (view: ViewState) => void }> = ({ setView }) => {
   const { t } = useLanguage();
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (window.scrollY === 0 && document.getElementById('home')) {
+      // already at top
+    } else {
+      setView(ViewState.HOME);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
+    setView(ViewState.HOME);
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        const offset = 80;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = element.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
   };
 
   return (

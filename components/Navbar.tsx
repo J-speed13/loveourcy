@@ -10,7 +10,7 @@ interface NavbarProps {
   setView: (view: ViewState) => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ currentView }) => {
+export const Navbar: React.FC<NavbarProps> = ({ currentView, setView }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { t, language, setLanguage } = useLanguage();
 
@@ -19,21 +19,31 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView }) => {
   };
 
   const scrollToSection = (id: ViewState) => {
-    const elementId = id === ViewState.HOME ? 'home' : 'help';
-    
-    if (elementId) {
+    if (currentView !== ViewState.HOME) {
+      setView(ViewState.HOME);
+      // We need a small delay to allow the home view to render before scrolling
+      setTimeout(() => {
+        const elementId = id === ViewState.HOME ? 'home' : 'help';
+        const element = document.getElementById(elementId);
+        if (element) {
+          const offset = 80;
+          const bodyRect = document.body.getBoundingClientRect().top;
+          const elementRect = element.getBoundingClientRect().top;
+          const elementPosition = elementRect - bodyRect;
+          const offsetPosition = elementPosition - offset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const elementId = id === ViewState.HOME ? 'home' : 'help';
       const element = document.getElementById(elementId);
       if (element) {
-        const offset = 80; // Navbar height
+        const offset = 80;
         const bodyRect = document.body.getBoundingClientRect().top;
         const elementRect = element.getBoundingClientRect().top;
         const elementPosition = elementRect - bodyRect;
         const offsetPosition = elementPosition - offset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
       }
     }
     setIsOpen(false);

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Heart, Download, Copy, Check, MessageSquare, Megaphone, Loader2 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
-export const Actions: React.FC = () => {
+export const Actions: React.FC<{ onContact: () => void }> = ({ onContact }) => {
   const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
   const [downloading, setDownloading] = useState(false);
@@ -73,14 +73,12 @@ export const Actions: React.FC = () => {
             <p className="text-slate-600 font-medium leading-relaxed mb-8 flex-grow">
               {(t.help as any).collab_text}
             </p>
-            <a 
-              href="https://www.instagram.com/jamesincyprus/"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button 
+              onClick={onContact}
               className="inline-flex items-center justify-center px-8 py-4 bg-[#355700] text-white font-black uppercase tracking-tight hover:bg-[#2a4500] transition-all"
             >
               {(t.help as any).collab_cta}
-            </a>
+            </button>
           </div>
 
           {/* Support the Project */}

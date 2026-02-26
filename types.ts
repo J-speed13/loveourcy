@@ -11,6 +11,7 @@ export enum ViewState {
   DOWNLOAD = 'DOWNLOAD',
   PRIVACY = 'PRIVACY',
   TERMS = 'TERMS',
+  CONTACT = 'CONTACT',
 }
 
 export interface ReportFormData {
