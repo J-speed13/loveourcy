@@ -18,8 +18,19 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onBack }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Debug: Check health endpoint
     try {
-      const response = await fetch('/api/contact', {
+      const healthCheck = await fetch(`${window.location.origin}/api/health`);
+      console.log('Health check status:', healthCheck.status);
+    } catch (e) {
+      console.warn('Health check failed:', e);
+    }
+
+    try {
+      const apiUrl = `${window.location.origin}/api/contact`;
+      console.log('Submitting to:', apiUrl);
+      
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
