@@ -37,12 +37,19 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onBack }) => {
           onBack();
         }, 5000);
       } else {
-        const errorData = await response.json();
-        alert(`Error: ${errorData.error || 'There was an error sending your message. Please try again.'}`);
+        let errorMessage = 'There was an error sending your message.';
+        try {
+          const errorData = await response.json();
+          errorMessage = errorData.details || errorData.error || errorMessage;
+        } catch (e) {
+          // If response is not JSON
+          errorMessage = `Server error (${response.status}). Please try again later.`;
+        }
+        alert(errorMessage);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Submission error:', error);
-      alert('There was an error sending your message. Please try again.');
+      alert(`Connection error: ${error.message || 'Please check your internet connection.'}`);
     }
   };
 

@@ -57,29 +57,25 @@ async function startServer() {
 
     if (!user || !pass) {
       console.error("SMTP credentials missing. Checked process.env and .env.example");
-      return res.status(500).json({ error: "Server configuration error: SMTP credentials not found. Please ensure SMTP_USER and SMTP_PASS are set." });
+      return res.status(500).json({ 
+        error: "Server configuration error: SMTP credentials not found.",
+        details: "Please ensure SMTP_USER and SMTP_PASS are set in your environment or .env.example file."
+      });
     }
 
-    const host = getEnvVar("SMTP_HOST") || "smtp.gmail.com";
-    const portStr = getEnvVar("SMTP_PORT") || "587";
-    const port = parseInt(portStr);
+    // Use 'service: gmail' for better reliability with Gmail accounts
     const transporter = nodemailer.createTransport({
-      host: host,
-      port: port,
-      // Gmail on 587 uses STARTTLS, so secure must be false. 
-      // Only use true for port 465.
-      secure: port === 465, 
+      service: 'gmail',
       auth: {
         user: user,
         pass: pass,
       },
-      tls: {
-        // Do not fail on invalid certs
-        rejectUnauthorized: false
-      }
     });
 
     try {
+      // Verify connection configuration
+      await transporter.verify();
+      
       await transporter.sendMail({
         from: `"${name}" <${user}>`,
         to: "iamjamesstanton@gmail.com",
@@ -89,9 +85,12 @@ async function startServer() {
       });
 
       res.json({ success: true });
-    } catch (error) {
+    } catch (error: any) {
       console.error("Email error:", error);
-      res.status(500).json({ error: "Failed to send email" });
+      res.status(500).json({ 
+        error: "Failed to send email", 
+        details: error.message || "Unknown error occurred" 
+      });
     }
   });
 
@@ -111,6 +110,15 @@ async function startServer() {
 
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on http://localhost:${PORT}`);
+    
+    // Startup check for credentials
+    const user = getEnvVar("SMTP_USER");
+    const pass = getEnvVar("SMTP_PASS");
+    if (user && pass) {
+      console.log("✅ SMTP credentials loaded successfully.");
+    } else {
+      console.warn("⚠️ SMTP credentials NOT found. Contact form will not work.");
+    }
   });
 }
 
