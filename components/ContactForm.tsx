@@ -18,27 +18,18 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onBack }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Debug: Check health endpoint
     try {
-      const healthCheck = await fetch(`${window.location.origin}/api/health`);
-      console.log('Health check status:', healthCheck.status);
-    } catch (e) {
-      console.warn('Health check failed:', e);
-    }
-
-    try {
-      const apiUrl = `${window.location.origin}/api/contact`;
-      console.log('Submitting to:', apiUrl);
-      
-      const response = await fetch(apiUrl, {
+      const response = await fetch('https://formspree.io/f/xzzbeovw', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          message: formData.comment
+          message: formData.comment,
+          _subject: `New Contact from Love Our Island: ${formData.name}`
         })
       });
 
@@ -48,19 +39,12 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onBack }) => {
           onBack();
         }, 5000);
       } else {
-        let errorMessage = 'There was an error sending your message.';
-        try {
-          const errorData = await response.json();
-          errorMessage = errorData.details || errorData.error || errorMessage;
-        } catch (e) {
-          // If response is not JSON
-          errorMessage = `Server error (${response.status}). Please try again later.`;
-        }
-        alert(errorMessage);
+        const errorData = await response.json();
+        alert(errorData.error || 'There was an error sending your message. Please try again.');
       }
     } catch (error: any) {
       console.error('Submission error:', error);
-      alert(`Connection error: ${error.message || 'Please check your internet connection.'}`);
+      alert('Connection error. Please check your internet and try again.');
     }
   };
 
